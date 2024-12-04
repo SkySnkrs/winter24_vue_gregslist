@@ -17,6 +17,11 @@
             <button class="btn btn-success">Cars 🚗</button>
           </router-link>
         </div>
+        <div>
+          <router-link :to="{ name: 'Houses' }">
+            <button class="btn btn-primary">Houses 🏘️</button>
+          </router-link>
+        </div>
       </div>
     </section>
   </div>
