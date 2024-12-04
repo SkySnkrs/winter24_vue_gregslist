@@ -1,12 +1,29 @@
 <script setup>
 import { AppState } from '@/AppState';
-import { logger } from '@/utils/Logger';
+import { housesService } from '@/services/HousesService';
 import Pop from '@/utils/Pop';
 import { computed, ref } from 'vue';
 
 
 async function createHouseListing() {
-    logger.log('Creating Car')
+    try {
+        await housesService.createHouse(editableHouseData.value)
+
+        editableHouseData.value = {
+            bedrooms: 1,
+            bathrooms: 1,
+            year: 1500,
+            price: 0,
+            levels: 1,
+            imageUrl: '',
+            description: ''
+        }
+        Pop.success('Successfully Created Listing! Good luck On Sale ✅')
+    }
+    catch (error) {
+        Pop.error('Error Listing House', error);
+    }
+
 }
 const account = computed(() => AppState.account)
 
@@ -53,6 +70,14 @@ const editableHouseData = ref({
 
 <template>
     <section class="container">
+        <div class="d-flex mt-3 justify-content-start">
+            <router-link :to="{ name: 'Cars' }">
+                <button class="btn btn-success mx-2">Cars 🚗</button>
+            </router-link>
+            <router-link :to="{ name: 'Houses' }">
+                <button class="btn btn-primary mx-2">Houses 🏘️</button>
+            </router-link>
+        </div>
         <div class="row">
             <div class="col-12">
                 <h2 class="text-center mt-4 mb-1">List Your House Now!</h2>
@@ -112,7 +137,8 @@ const editableHouseData = ref({
                             </div>
                             <div class="row">
                                 <div class="col-12 text-end p-2 mt-2">
-                                    <button class="btn btn-success">Create Listing</button>
+                                    <button @submit.prevent="createHouseListing()" class="btn btn-success">Create
+                                        Listing</button>
                                 </div>
                             </div>
                         </form>

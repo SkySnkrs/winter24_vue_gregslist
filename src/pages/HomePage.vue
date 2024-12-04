@@ -14,10 +14,10 @@
       <div class="col-12">
         <div class="d-flex justify-content-center">
           <router-link :to="{ name: 'Cars' }">
-            <button class="btn btn-success">Cars 🚗</button>
+            <button class="btn btn-success mx-2">Cars 🚗</button>
           </router-link>
           <router-link :to="{ name: 'Houses' }">
-            <button class="btn btn-primary">Houses 🏘️</button>
+            <button class="btn btn-primary mx-2">Houses 🏘️</button>
           </router-link>
         </div>
       </div>

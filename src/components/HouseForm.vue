@@ -5,7 +5,7 @@ import { computed } from 'vue';
 
 const account = computed(() => AppState.account)
 
-const props = defineProps({
+defineProps({
     houseProp: { type: House, required: true }
 })
 
@@ -49,7 +49,8 @@ const props = defineProps({
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger">Delete Listing</button>
+                        <button v-if="account.id == houseProp.creator.id" type="button" class="btn btn-danger">Delete
+                            Listing</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>

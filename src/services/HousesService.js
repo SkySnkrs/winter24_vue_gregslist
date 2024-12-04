@@ -4,6 +4,10 @@ import { House } from "@/models/House.js"
 import { AppState } from "@/AppState.js"
 
 class HousesService {
+    async createHouse(value) {
+        const response = await api.post('api/houses', value)
+        logger.log(response)
+    }
 
     async getHouses(){
         const response = await api.get('api/houses')
