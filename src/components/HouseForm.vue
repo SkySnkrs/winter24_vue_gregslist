@@ -23,7 +23,8 @@ const props = defineProps({
             </div>
         </div>
         <div class="col-md-7 text-center">
-            <p class="fs-6" id="houseInformation">{{ houseProp.description }}</p>
+            <p class="fs-6">{{ houseProp.description }}
+            </p>
         </div>
         <div class="modal fade" :id="houseProp.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -33,11 +34,14 @@ const props = defineProps({
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        ...
+                        <p>Levels: {{ houseProp.levels }}</p>
+                        <p>Bedrooms: {{ houseProp.bedrooms }}</p>
+                        <p>Bathrooms: {{ houseProp.bathrooms }}</p>
+                        <p>Year: {{ houseProp.year }}</p>
+                        <p>Listed By: {{ houseProp.creator.name }}</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
