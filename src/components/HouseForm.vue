@@ -1,6 +1,9 @@
 <script setup>
+import { AppState } from '@/AppState';
 import { House } from '@/models/House';
+import { computed } from 'vue';
 
+const account = computed(() => AppState.account)
 
 const props = defineProps({
     houseProp: { type: House, required: true }
@@ -33,14 +36,20 @@ const props = defineProps({
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Price ${{ houseProp.price }}</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <p>Levels: {{ houseProp.levels }}</p>
-                        <p>Bedrooms: {{ houseProp.bedrooms }}</p>
-                        <p>Bathrooms: {{ houseProp.bathrooms }}</p>
-                        <p>Year: {{ houseProp.year }}</p>
-                        <p>Listed By: {{ houseProp.creator.name }}</p>
+                    <div class="modal-body d-flex">
+                        <div class="text-start w-50 ">
+                            <p>Levels: {{ houseProp.levels }}</p>
+                            <p>Bedrooms: {{ houseProp.bedrooms }}</p>
+                            <p>Bathrooms: {{ houseProp.bathrooms }}</p>
+                            <p>Year: {{ houseProp.year }}</p>
+                            <p>Listed By: {{ houseProp.creator.name }}</p>
+                        </div>
+                        <div class="text-end w-50">
+                            <img :src="houseProp.creator.picture" alt="">
+                        </div>
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-danger">Delete Listing</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>

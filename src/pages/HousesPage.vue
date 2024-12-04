@@ -27,6 +27,13 @@ async function getHouses() {
 
 <template>
     <section class="container">
+        <div class="row">
+            <div class="col-12 text-start mt-2 p-2">
+                <router-link :to="{ name: 'Listing' }">
+                    <button class="btn btn-success">List Your House</button>
+                </router-link>
+            </div>
+        </div>
         <div class="row" id="houseListingContainer">
             <div class="col-12">
                 <h2>Houses For Sale</h2>
