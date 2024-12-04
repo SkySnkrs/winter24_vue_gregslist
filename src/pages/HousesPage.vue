@@ -1,9 +1,12 @@
 <script setup>
+import { AppState } from '@/AppState';
+import HouseForm from '@/components/HouseForm.vue';
 import { housesService } from '@/services/HousesService';
 import { logger } from '@/utils/Logger';
 import Pop from '@/utils/Pop';
-import { onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
 
+const houses = computed(() => AppState.houses)
 
 onMounted(() => {
     getHouses()
@@ -29,7 +32,11 @@ async function getHouses() {
                 <h2>Houses For Sale</h2>
             </div>
         </div>
-
+        <section class="row">
+            <div v-for="house in houses" v-bind:key="house.id" class="col-md-6">
+                <HouseForm :houseProp="house" />
+            </div>
+        </section>
     </section>
 </template>
 
