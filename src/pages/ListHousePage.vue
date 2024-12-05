@@ -8,6 +8,7 @@ import { computed, ref } from 'vue';
 async function createHouseListing() {
     try {
         await housesService.createHouse(editableHouseData.value)
+        Pop.success(`Successfully Created Listing For $${editableHouseData.value.price}! Good luck On Sale ✅`)
 
         editableHouseData.value = {
             bedrooms: 1,
@@ -18,7 +19,6 @@ async function createHouseListing() {
             imageUrl: '',
             description: ''
         }
-        Pop.success('Successfully Created Listing! Good luck On Sale ✅')
     }
     catch (error) {
         Pop.error('Error Listing House', error);

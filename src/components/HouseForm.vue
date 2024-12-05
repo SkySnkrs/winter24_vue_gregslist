@@ -1,6 +1,8 @@
 <script setup>
 import { AppState } from '@/AppState';
 import { House } from '@/models/House';
+import { housesService } from '@/services/HousesService';
+import Pop from '@/utils/Pop';
 import { computed } from 'vue';
 
 const account = computed(() => AppState.account)
@@ -9,6 +11,16 @@ defineProps({
     houseProp: { type: House, required: true }
 })
 
+async function deleteHouse(houseProp) {
+    try {
+        const confirm = await Pop.confirm(`Are You Sure You Want To Delete ${houseProp.id}`)
+        if (confirm == false) { return }
+        await housesService.deleteHouse(houseProp.id)
+    }
+    catch (error) {
+        Pop.error(error);
+    }
+}
 
 </script>
 
@@ -49,7 +61,8 @@ defineProps({
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button v-if="account.id == houseProp.creator.id" type="button" class="btn btn-danger">Delete
+                        <button v-if="account?.id == houseProp.creator.id" @click="deleteHouse(houseProp)" type="button"
+                            class="btn btn-danger">Delete
                             Listing</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>

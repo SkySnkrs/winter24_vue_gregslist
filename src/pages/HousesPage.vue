@@ -22,6 +22,8 @@ async function getHouses() {
     }
 }
 
+
+
 </script>
 
 
